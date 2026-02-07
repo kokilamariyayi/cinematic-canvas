@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowDown, User, Code, Award, Lightbulb } from 'lucide-react';
 import { ParticleCanvas } from '@/components/ParticleCanvas';
+import { RobotScene } from '@/components/RobotScene';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { PageTransition } from '@/components/PageTransition';
 import { Button } from '@/components/ui/button';
@@ -58,6 +59,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <ParticleCanvas />
+        <RobotScene />
 
         {/* Gradient mesh overlay */}
         <div className="absolute inset-0 bg-gradient-mesh" aria-hidden="true" />
