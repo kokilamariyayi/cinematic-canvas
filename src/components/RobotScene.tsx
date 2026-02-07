@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState, useCallback, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { ContactShadows } from '@react-three/drei';
 import { RobotModel } from './RobotModel';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
@@ -28,15 +28,17 @@ export const RobotScene = ({ data }: RobotSceneProps) => {
     return () => observer.disconnect();
   }, []);
 
-  // Normalised mouse position (-1 to 1) relative to viewport
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (reducedMotion) return;
-    const x = (e.clientX / window.innerWidth) * 2 - 1;
-    const y = (e.clientY / window.innerHeight) * 2 - 1;
-    setMousePosition({ x, y });
-  }, [reducedMotion]);
+  // Normalised mouse position (-1 to 1) from window
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (reducedMotion) return;
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = (e.clientY / window.innerHeight) * 2 - 1;
+      setMousePosition({ x, y });
+    },
+    [reducedMotion]
+  );
 
-  // Listen to window-level mouse so the robot reacts even when cursor is over text
   useEffect(() => {
     if (reducedMotion) return;
     window.addEventListener('mousemove', handleMouseMove);
@@ -44,45 +46,71 @@ export const RobotScene = ({ data }: RobotSceneProps) => {
   }, [handleMouseMove, reducedMotion]);
 
   // Touch support for mobile
-  const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
-    if (reducedMotion) return;
-    const touch = e.touches[0];
-    const x = (touch.clientX / window.innerWidth) * 2 - 1;
-    const y = (touch.clientY / window.innerHeight) * 2 - 1;
-    setMousePosition({ x, y });
-  }, [reducedMotion]);
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      if (reducedMotion) return;
+      const touch = e.touches[0];
+      const x = (touch.clientX / window.innerWidth) * 2 - 1;
+      const y = (touch.clientY / window.innerHeight) * 2 - 1;
+      setMousePosition({ x, y });
+    },
+    [reducedMotion]
+  );
 
   if (reducedMotion) return null;
 
   return (
     <div
       ref={containerRef}
-      className="absolute right-0 bottom-0 w-[45%] h-[80%] z-[1] pointer-events-none
-                 max-md:w-[55%] max-md:h-[50%] max-md:right-[-5%] max-md:bottom-[10%]
-                 max-sm:w-[60%] max-sm:h-[45%] max-sm:right-[-8%] max-sm:bottom-[12%]
-                 opacity-80 md:opacity-100"
+      className="absolute right-0 bottom-0 z-[1]
+                 w-[50%] h-[75%]
+                 md:w-[45%] md:h-[80%]
+                 max-sm:w-[55%] max-sm:h-[50%] max-sm:right-[-4%] max-sm:bottom-[8%]"
       onTouchMove={handleTouchMove}
       aria-hidden="true"
     >
       {isVisible && (
         <Canvas
           dpr={[1, 1.5]}
-          camera={{ position: [0, 0.3, 4], fov: 40 }}
+          camera={{ position: [0, 0.5, 4.5], fov: 35 }}
           gl={{
             antialias: true,
             alpha: true,
             powerPreference: 'high-performance',
           }}
+          style={{ pointerEvents: 'none' }}
         >
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[3, 4, 5]} intensity={0.9} color="#ffffff" />
-          <directionalLight position={[-2, 2, -1]} intensity={0.25} color="#4af" />
-          <pointLight position={[0, 0, 3]} intensity={0.3} color="hsl(190, 90%, 50%)" distance={6} />
+          {/* Ambient fill */}
+          <ambientLight intensity={0.6} />
+
+          {/* Key light — warm from top-right */}
+          <directionalLight position={[4, 5, 4]} intensity={1.2} color="#ffffff" />
+
+          {/* Fill light — cool cyan from left */}
+          <directionalLight position={[-3, 2, 2]} intensity={0.5} color="#00ccff" />
+
+          {/* Rim / back light for depth */}
+          <directionalLight position={[0, 3, -4]} intensity={0.4} color="#6688ff" />
+
+          {/* Subtle accent point light */}
+          <pointLight
+            position={[0, 1, 3]}
+            intensity={0.4}
+            color="#00ddff"
+            distance={8}
+          />
 
           <Suspense fallback={null}>
             <RobotModel mousePosition={mousePosition} data={data} />
-            <Environment preset="city" />
           </Suspense>
+
+          {/* Soft ground shadow */}
+          <ContactShadows
+            position={[0, -1.1, 0]}
+            opacity={0.3}
+            scale={6}
+            blur={2.5}
+          />
         </Canvas>
       )}
     </div>
