@@ -28,22 +28,27 @@ export const RobotScene = ({ data }: RobotSceneProps) => {
     return () => observer.disconnect();
   }, []);
 
-  // Normalised mouse position (-1 to 1)
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  // Normalised mouse position (-1 to 1) relative to viewport
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (reducedMotion) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    const x = (e.clientX / window.innerWidth) * 2 - 1;
+    const y = (e.clientY / window.innerHeight) * 2 - 1;
     setMousePosition({ x, y });
   }, [reducedMotion]);
+
+  // Listen to window-level mouse so the robot reacts even when cursor is over text
+  useEffect(() => {
+    if (reducedMotion) return;
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [handleMouseMove, reducedMotion]);
 
   // Touch support for mobile
   const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
     if (reducedMotion) return;
     const touch = e.touches[0];
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
-    const y = ((touch.clientY - rect.top) / rect.height) * 2 - 1;
+    const x = (touch.clientX / window.innerWidth) * 2 - 1;
+    const y = (touch.clientY / window.innerHeight) * 2 - 1;
     setMousePosition({ x, y });
   }, [reducedMotion]);
 
@@ -52,25 +57,27 @@ export const RobotScene = ({ data }: RobotSceneProps) => {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 z-[1] pointer-events-auto"
-      onMouseMove={handleMouseMove}
+      className="absolute right-0 bottom-0 w-[45%] h-[80%] z-[1] pointer-events-none
+                 max-md:w-[55%] max-md:h-[50%] max-md:right-[-5%] max-md:bottom-[10%]
+                 max-sm:w-[60%] max-sm:h-[45%] max-sm:right-[-8%] max-sm:bottom-[12%]
+                 opacity-80 md:opacity-100"
       onTouchMove={handleTouchMove}
       aria-hidden="true"
     >
       {isVisible && (
         <Canvas
           dpr={[1, 1.5]}
-          camera={{ position: [0, 0, 5], fov: 45 }}
+          camera={{ position: [0, 0.3, 4], fov: 40 }}
           gl={{
             antialias: true,
             alpha: true,
             powerPreference: 'high-performance',
           }}
-          style={{ pointerEvents: 'none' }}
         >
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={0.8} />
-          <directionalLight position={[-3, 2, -2]} intensity={0.3} color="#4af" />
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[3, 4, 5]} intensity={0.9} color="#ffffff" />
+          <directionalLight position={[-2, 2, -1]} intensity={0.25} color="#4af" />
+          <pointLight position={[0, 0, 3]} intensity={0.3} color="hsl(190, 90%, 50%)" distance={6} />
 
           <Suspense fallback={null}>
             <RobotModel mousePosition={mousePosition} data={data} />

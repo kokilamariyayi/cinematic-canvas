@@ -64,11 +64,12 @@ const Index = () => {
         {/* Gradient mesh overlay */}
         <div className="absolute inset-0 bg-gradient-mesh" aria-hidden="true" />
 
-        <div className="container relative z-10 text-center px-6">
+        <div className="container relative z-10 px-6 md:text-left text-center">
           <motion.div
             variants={reducedMotion ? {} : containerVariants}
             initial="hidden"
             animate="visible"
+            className="max-w-xl md:max-w-lg lg:max-w-xl"
           >
             <motion.p
               variants={itemVariants}
@@ -84,13 +85,13 @@ const Index = () => {
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-muted-foreground mt-4 max-w-xl mx-auto"
+              className="text-lg md:text-xl text-muted-foreground mt-4 max-w-xl"
             >
               Full-Stack Developer & Creative Engineer
             </motion.p>
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
+              className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center mt-8"
             >
               <Button variant="glow" size="lg" asChild>
                 <Link to="/contact">Hire Me</Link>
