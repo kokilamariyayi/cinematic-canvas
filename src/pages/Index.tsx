@@ -13,25 +13,25 @@ const storyItems = [
     icon: User,
     title: 'Who I Am',
     description:
-      'A curious engineer driven by the intersection of design and technology. I believe that great software should feel as good as it looks.',
+      'An aspiring AI & ML engineer with a strong foundation in data analysis, statistics, and machine learning — driven by curiosity and a passion for impactful technology.',
   },
   {
     icon: Code,
     title: 'What I Do',
     description:
-      'Full-stack development with a focus on React, TypeScript, and modern web technologies. I build performant, accessible experiences that scale.',
+      'Building intelligent systems with Python, NLP, LLMs, and cloud technologies. From sentiment analysis to fraud detection — I turn data into decisions.',
   },
   {
     icon: Award,
     title: 'What I\'ve Built',
     description:
-      'From AI-powered platforms to real-time analytics dashboards — projects that solve real problems and push boundaries.',
+      'AI-powered expense forecasting tools, sentiment analysis platforms, fraud detection systems, and voice-controlled assistants for elderly care.',
   },
   {
     icon: Lightbulb,
     title: 'How I Think',
     description:
-      'Every line of code is a design decision. I approach engineering with the mindset of a craftsman — simplicity, clarity, and intention.',
+      'Every dataset tells a story. I approach problems with analytical thinking and visualization skills to derive meaningful insights and support data-driven decisions.',
   },
 ];
 
@@ -81,13 +81,13 @@ const Index = () => {
               variants={itemVariants}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight"
             >
-              <span className="text-gradient-primary">Alex Chen</span>
+              <span className="text-gradient-primary">Kokila M</span>
             </motion.h1>
             <motion.p
               variants={itemVariants}
               className="text-lg md:text-xl text-muted-foreground mt-4 max-w-xl"
             >
-              Full-Stack Developer & Creative Engineer
+              Aspiring AI & ML Engineer
             </motion.p>
             <motion.div
               variants={itemVariants}
@@ -121,7 +121,7 @@ const Index = () => {
               The Story
             </h2>
             <p className="text-muted-foreground text-center max-w-lg mx-auto mb-16">
-              Engineering discipline meets creative vision.
+              Data science meets creative problem-solving.
             </p>
           </AnimatedSection>
 

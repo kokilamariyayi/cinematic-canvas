@@ -1,40 +1,40 @@
-import { Monitor, Server, Wrench } from 'lucide-react';
+import { Brain, Database, Wrench } from 'lucide-react';
 import { PageTransition } from '@/components/PageTransition';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { SkillBar } from '@/components/SkillBar';
 
 const skillCategories = [
   {
-    title: 'Frontend',
-    icon: Monitor,
+    title: 'AI & ML',
+    icon: Brain,
     skills: [
-      { name: 'React', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Next.js', level: 85 },
-      { name: 'Tailwind CSS', level: 92 },
-      { name: 'Framer Motion', level: 80 },
+      { name: 'NLP', level: 85 },
+      { name: 'LLM', level: 80 },
+      { name: 'RAG', level: 78 },
+      { name: 'Prompt Engineering', level: 88 },
+      { name: 'Agentic AI', level: 75 },
     ],
   },
   {
-    title: 'Backend',
-    icon: Server,
+    title: 'Data & Backend',
+    icon: Database,
     skills: [
-      { name: 'Node.js', level: 88 },
-      { name: 'Python', level: 82 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'GraphQL', level: 75 },
-      { name: 'Docker', level: 78 },
+      { name: 'Python', level: 90 },
+      { name: 'SQL', level: 85 },
+      { name: 'REST API', level: 80 },
+      { name: 'AWS', level: 72 },
+      { name: 'Dashboard Development', level: 85 },
     ],
   },
   {
     title: 'Tools & DevOps',
     icon: Wrench,
     skills: [
-      { name: 'Git', level: 95 },
-      { name: 'AWS', level: 70 },
-      { name: 'Figma', level: 75 },
-      { name: 'Linux', level: 80 },
-      { name: 'CI/CD', level: 78 },
+      { name: 'Git', level: 85 },
+      { name: 'Power BI', level: 82 },
+      { name: 'IBM AutoAI', level: 75 },
+      { name: 'TensorFlow', level: 70 },
+      { name: 'Web Development', level: 75 },
     ],
   },
 ];

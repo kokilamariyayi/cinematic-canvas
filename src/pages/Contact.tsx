@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { PageTransition } from '@/components/PageTransition';
 import { AnimatedSection } from '@/components/AnimatedSection';
@@ -160,7 +160,16 @@ const Contact = () => {
                   <div>
                     <h3 className="font-heading font-semibold mb-1">Email</h3>
                     <p className="text-muted-foreground text-sm">
-                      alex@example.com
+                      kokilakoki3376@gmail.com
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <Phone className="h-5 w-5 text-primary mt-0.5" />
+                  <div>
+                    <h3 className="font-heading font-semibold mb-1">Phone</h3>
+                    <p className="text-muted-foreground text-sm">
+                      +91 7812810523
                     </p>
                   </div>
                 </div>
@@ -171,7 +180,7 @@ const Contact = () => {
                       Location
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      San Francisco, CA
+                      Coimbatore, Tamil Nadu, India
                     </p>
                   </div>
                 </div>

@@ -1,40 +1,80 @@
-import { Download, Briefcase, GraduationCap } from 'lucide-react';
+import { Download, Briefcase, GraduationCap, Award, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageTransition } from '@/components/PageTransition';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { Button } from '@/components/ui/button';
-import { toast } from 'sonner';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-const experience = [
+const internships = [
   {
-    role: 'Senior Frontend Engineer',
-    company: 'TechCorp',
-    period: '2022 — Present',
+    role: 'Artificial Intelligence Intern',
+    company: 'Infosys Springboard 6.0',
+    period: 'Sep — Dec 2025',
     description:
-      'Leading the design system initiative and building performant React applications serving millions of users.',
+      'Designed an AI-based Expense Forecasting Tool using Python and included a chatbot module for user interaction.',
   },
   {
-    role: 'Full-Stack Developer',
-    company: 'StartupXYZ',
-    period: '2020 — 2022',
+    role: 'Emerging Technologies (AI & Cloud)',
+    company: 'Edunet Foundation (AICTE)',
+    period: 'Jul — Aug 2025',
     description:
-      'Built end-to-end features across React frontend and Node.js backend, reducing page load times by 40%.',
+      'Built a cloud-based ML Prediction system using IBM AutoAI involving automated feature engineering, model training and evaluation.',
   },
   {
-    role: 'Frontend Developer',
-    company: 'DigitalAgency',
-    period: '2018 — 2020',
+    role: 'Data Analytics Intern',
+    company: 'NoviTech R&D Pvt. Ltd, Coimbatore',
+    period: 'Aug — Sep 2024',
     description:
-      'Developed responsive web applications and interactive experiences for Fortune 500 clients.',
+      'Built an HR Analysis Dashboard using Power BI to analyze workforce metrics such as employee distribution, attrition trends, and performance indicators.',
   },
 ];
 
 const education = [
   {
-    degree: 'B.S. Computer Science',
-    school: 'University of Technology',
-    period: '2014 — 2018',
+    degree: 'B.Tech Artificial Intelligence And Data Science',
+    school: 'Anna University, Nehru Institute Of Engineering And Technology, Coimbatore',
+    period: '2023 — 2027',
+    detail: '8.79 CGPA',
+  },
+  {
+    degree: 'HSC & SSLC',
+    school: 'State Board, Dhanalakshmi Srinivasan Higher Secondary School, Perambalur',
+    period: '2022 — 2023',
+    detail: '89.99%',
+  },
+];
+
+const certifications = [
+  'Google Business Intelligence — Coursera & Google (2025)',
+  'Deep Learning For Developers — Infosys (2025)',
+  'Introduction to LLMs — NPTEL (2025)',
+  'Deep Learning — NPTEL (2025)',
+  'IBM Generative AI Engineering — IBM & Coursera (2025)',
+  'Prompt Engineering — Infosys (2025)',
+  'Microsoft AI & ML Engineering — Microsoft & Google (2025)',
+  'SQL & Relational Databases — Cognizant & IBM (2024)',
+];
+
+const workshops = [
+  {
+    title: 'Full Stack Web Application Development',
+    org: 'Entire Skill, Coimbatore',
+    period: 'Nov 2025 (3 days)',
+  },
+  {
+    title: 'Generative AI, LLMs, and Prompt Engineering',
+    org: 'Gateway Software Solutions, Coimbatore',
+    period: 'Mar 2025 (7 days)',
+  },
+  {
+    title: 'Python Programming Skills',
+    org: 'Gateway Software Solutions, Coimbatore',
+    period: 'Sep — Oct 2024 (6 days)',
+  },
+  {
+    title: 'Codeless Data Science',
+    org: 'Industry Expert, Coimbatore',
+    period: 'Oct 2024',
   },
 ];
 
@@ -42,7 +82,12 @@ const Resume = () => {
   const reducedMotion = useReducedMotion();
 
   const handleDownload = () => {
-    toast.info('Resume download will be available once a PDF is uploaded.');
+    const link = document.createElement('a');
+    link.href = '/KOKILA_CV.pdf';
+    link.download = 'Kokila_M_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -76,18 +121,18 @@ const Resume = () => {
             </div>
           </AnimatedSection>
 
-          {/* Experience */}
+          {/* Internships */}
           <AnimatedSection delay={0.1}>
             <div className="flex items-center gap-3 mb-6">
               <Briefcase className="h-5 w-5 text-primary" />
               <h2 className="text-2xl font-heading font-semibold">
-                Experience
+                Internships
               </h2>
             </div>
           </AnimatedSection>
 
           <div className="space-y-6 mb-12">
-            {experience.map((item, i) => (
+            {internships.map((item, i) => (
               <AnimatedSection key={item.role} delay={0.15 + i * 0.1}>
                 <div className="p-5 rounded-xl bg-card border border-border">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
@@ -115,19 +160,71 @@ const Resume = () => {
             </div>
           </AnimatedSection>
 
-          {education.map((item, i) => (
-            <AnimatedSection key={item.degree} delay={0.35 + i * 0.1}>
-              <div className="p-5 rounded-xl bg-card border border-border">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                  <h3 className="font-heading font-semibold">{item.degree}</h3>
-                  <span className="text-xs text-muted-foreground font-mono">
-                    {item.period}
-                  </span>
+          <div className="space-y-6 mb-12">
+            {education.map((item, i) => (
+              <AnimatedSection key={item.degree} delay={0.35 + i * 0.1}>
+                <div className="p-5 rounded-xl bg-card border border-border">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <h3 className="font-heading font-semibold">{item.degree}</h3>
+                    <span className="text-xs text-muted-foreground font-mono">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-primary text-sm mt-1">{item.school}</p>
+                  <p className="text-muted-foreground text-sm mt-1 font-mono">{item.detail}</p>
                 </div>
-                <p className="text-primary text-sm mt-1">{item.school}</p>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <AnimatedSection delay={0.45}>
+            <div className="flex items-center gap-3 mb-6">
+              <Award className="h-5 w-5 text-primary" />
+              <h2 className="text-2xl font-heading font-semibold">
+                Certifications
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.5}>
+            <div className="p-5 rounded-xl bg-card border border-border mb-12">
+              <ul className="space-y-2">
+                {certifications.map((cert) => (
+                  <li key={cert} className="text-muted-foreground text-sm leading-relaxed flex items-start gap-2">
+                    <span className="text-primary mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {cert}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+
+          {/* Workshops */}
+          <AnimatedSection delay={0.55}>
+            <div className="flex items-center gap-3 mb-6">
+              <BookOpen className="h-5 w-5 text-primary" />
+              <h2 className="text-2xl font-heading font-semibold">
+                Workshops
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <div className="space-y-6">
+            {workshops.map((item, i) => (
+              <AnimatedSection key={item.title} delay={0.6 + i * 0.1}>
+                <div className="p-5 rounded-xl bg-card border border-border">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <h3 className="font-heading font-semibold">{item.title}</h3>
+                    <span className="text-xs text-muted-foreground font-mono">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-primary text-sm mt-1">{item.org}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
     </PageTransition>

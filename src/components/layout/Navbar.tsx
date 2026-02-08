@@ -47,7 +47,7 @@ export const Navbar = () => {
           to="/"
           className="text-xl font-bold font-heading text-gradient-primary"
         >
-          AC
+          KM
         </Link>
 
         {/* Desktop */}

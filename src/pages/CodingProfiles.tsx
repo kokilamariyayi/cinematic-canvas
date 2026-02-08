@@ -1,4 +1,4 @@
-import { Github, Code2, Award, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageTransition } from '@/components/PageTransition';
 import { AnimatedSection } from '@/components/AnimatedSection';
@@ -7,30 +7,19 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 const profiles = [
   {
     name: 'GitHub',
-    username: '@alexchen',
+    username: '@kokilamariyayi',
     description:
-      'Open source contributions, personal projects, and experiments.',
-    url: 'https://github.com',
+      'Open source contributions, AI/ML projects, and experiments.',
+    url: 'https://github.com/kokilamariyayi',
     icon: Github,
-    stats: '120+ repos • 500+ contributions',
   },
   {
-    name: 'LeetCode',
-    username: '@alexchen',
+    name: 'LinkedIn',
+    username: 'kokila-m-ai-ds',
     description:
-      'Algorithm problem solving, contest participation, and daily challenges.',
-    url: 'https://leetcode.com',
-    icon: Code2,
-    stats: '400+ problems solved',
-  },
-  {
-    name: 'SkillRack',
-    username: '@alexchen',
-    description:
-      'Coding assessments, programming challenges, and skill certifications.',
-    url: 'https://skillrack.com',
-    icon: Award,
-    stats: '200+ challenges completed',
+      'Professional network, career updates, and industry connections.',
+    url: 'https://www.linkedin.com/in/kokila-m-ai-ds',
+    icon: Linkedin,
   },
 ];
 
@@ -43,10 +32,10 @@ const CodingProfiles = () => {
         <div className="container mx-auto px-6 max-w-3xl">
           <AnimatedSection>
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              Coding Profiles
+              Profiles
             </h1>
             <p className="text-muted-foreground mb-12">
-              Where I practice, contribute, and grow as an engineer.
+              Where I build, connect, and grow as an engineer.
             </p>
           </AnimatedSection>
 
@@ -75,11 +64,8 @@ const CodingProfiles = () => {
                     <p className="text-primary text-sm mb-1">
                       {profile.username}
                     </p>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-2">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
                       {profile.description}
-                    </p>
-                    <p className="text-xs text-muted-foreground font-mono">
-                      {profile.stats}
                     </p>
                   </div>
                 </motion.a>
