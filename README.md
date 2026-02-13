@@ -2,7 +2,7 @@
 
 ## 🚀 Where This Lives
 
-This portfolio isn’t just code sitting in a repository —  
+This portfolio isn’t just code sitting in a repository ,
 it’s built to be fast, responsive, and production-ready.
 
 Deployed and optimized for real-world performance.
@@ -11,8 +11,8 @@ Deployed and optimized for real-world performance.
 
 ## 📬 Let’s Connect
 
-If something here caught your attention —  
-a project, an idea, or even the way I structure my ML pipelines —  
+If something here caught your attention ...
+a project, an idea, or even the way I structure my ML pipelines.
 I’d love to talk.
 
 Open to:
